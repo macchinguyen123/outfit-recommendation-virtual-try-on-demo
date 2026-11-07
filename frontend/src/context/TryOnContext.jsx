@@ -55,15 +55,15 @@ export const TryOnProvider = ({ children }) => {
     }
 
     setIsGenerating(true);
-    setProcessingStep('1/3: Phân tích khung xương và góc chụp (Human Pose Estimation)...');
+    setProcessingStep('1/3: Trích xuất mặt nạ cơ thể & Agnostic Mask (AutoMasker)...');
 
     const stepTimer1 = setTimeout(() => {
-      setProcessingStep('2/3: Bóc tách nếp vải và uốn phối 3D (Geometric Cloth Warping)...');
-    }, 600);
+      setProcessingStep('2/3: Nối ghép kênh đặc trưng CatVTON Concatenation Conditioning...');
+    }, 2000);
 
     const stepTimer2 = setTimeout(() => {
-      setProcessingStep('3/3: Mô hình Diffusion tạo ánh sáng chân thực (IDM-VTON Rendering)...');
-    }, 1200);
+      setProcessingStep('3/3: GPU Kaggle T4 đang chạy mô hình Latent Diffusion khử nhiễu 40 bước (khoảng 40s - 80s)... Vui lòng giữ màn hình!');
+    }, 5000);
 
     try {
       const payload = {

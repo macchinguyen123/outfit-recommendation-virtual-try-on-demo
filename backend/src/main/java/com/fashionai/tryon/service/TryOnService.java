@@ -67,23 +67,25 @@ public class TryOnService {
         session = tryOnSessionRepository.save(session);
 
         try {
-            // Xác định loại trang phục và URL ảnh trang phục cần gửi tới AI
-            String garmentUrl = defaultModelImage;
-            String categoryType = "TOP";
+            String resultUrl;
 
-            if (dressProduct != null) {
-                garmentUrl = dressProduct.getImageUrl();
-                categoryType = "DRESS";
+            // Kịch bản thử cả bộ (Áo + Quần) theo chiến lược tuần tự CatVTON
+            if (topProduct != null && bottomProduct != null) {
+                log.info("Thực hiện thử cả bộ Áo + Quần theo kịch bản tuần tự của đề cương nghiên cứu");
+                resultUrl = aiServiceAdapter.executeSequentialTryOn(
+                        personImage,
+                        topProduct.getImageUrl(),
+                        bottomProduct.getImageUrl()
+                );
+            } else if (dressProduct != null) {
+                resultUrl = aiServiceAdapter.executeVirtualTryOn(personImage, dressProduct.getImageUrl(), "DRESS");
             } else if (topProduct != null) {
-                garmentUrl = topProduct.getImageUrl();
-                categoryType = "TOP";
+                resultUrl = aiServiceAdapter.executeVirtualTryOn(personImage, topProduct.getImageUrl(), "TOP");
             } else if (bottomProduct != null) {
-                garmentUrl = bottomProduct.getImageUrl();
-                categoryType = "BOTTOM";
+                resultUrl = aiServiceAdapter.executeVirtualTryOn(personImage, bottomProduct.getImageUrl(), "BOTTOM");
+            } else {
+                resultUrl = defaultModelImage;
             }
-
-            // Gọi AI diffusion pipeline
-            String resultUrl = aiServiceAdapter.executeVirtualTryOn(personImage, garmentUrl, categoryType);
 
             long duration = System.currentTimeMillis() - startTime;
             session.setStatus(TryOnStatus.COMPLETED);

@@ -18,24 +18,22 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: false
-    properties:
-      hibernate:
-        format_sql: true
   servlet:
     multipart:
-      max-file-size: 15MB
-      max-request-size: 20MB
+      max-file-size: 25MB
+      max-request-size: 30MB
 
-# Custom AI Engine Configuration
+# ==============================================================================
+# CẤU HÌNH KẾT NỐI MÔ HÌNH THỬ ĐỒ ẢO CatVTON TRÊN KAGGLE T4 GPU
+# ==============================================================================
 ai:
   tryon:
-    mock-mode: true
-    model-provider: "IDM-VTON-Simulation" # Or "replicate", "huggingface", "local-diffusion"
-    api-key: "demo-api-key"
-    external-endpoint: "https://api.replicate.com/v1/predictions"
-    simulated-delay-ms: 1800
+    mock-mode: false # Đã bật chạy thật với GPU của Kaggle
+    model-provider: "CatVTON"
+    # Link ngrok thực tế đang chạy trên Kaggle của bạn:
+    catvton-api-url: "https://crouch-frame-reason.ngrok-free.dev/api/v1/tryon"
+    simulated-delay-ms: 1500
 
-# OpenAPI Swagger Docs
 springdoc:
   api-docs:
     path: /api-docs

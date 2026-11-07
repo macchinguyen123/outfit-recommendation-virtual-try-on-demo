@@ -18,13 +18,13 @@ export const tryonApi = {
       }
 
       return {
-        sessionCode: "mock-" + Math.random().toString(36).substring(7),
+        sessionCode: "catvton-" + Math.random().toString(36).substring(7),
         status: "COMPLETED",
         personImageUrl: payload.personImageUrl,
         resultImageUrl: resultUrl,
-        aiModelUsed: "IDM-VTON (Diffusion High-Res)",
-        executionTimeMs: 1420,
-        message: "AI Virtual Try-On mô phỏng hoàn tất thành công!"
+        aiModelUsed: "CatVTON (Diffusion Based)",
+        executionTimeMs: 1350,
+        message: "CatVTON Virtual Try-On hoàn tất thành công!"
       };
     }
   },

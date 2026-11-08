@@ -7,33 +7,20 @@ export default {
   theme: {
     extend: {
       colors: {
-        brand: {
-          50: '#fdf4f5',
-          100: '#fbe8eb',
-          200: '#f7d5db',
-          300: '#f1b3bf',
-          400: '#e7879b',
-          500: '#d95374',
-          600: '#c4375b',
-          700: '#a42848',
-          800: '#89243e',
-          900: '#752238',
-          950: '#420d1c',
-        },
-        fashion: {
-          dark: '#0c0d12',
-          card: '#161821',
-          border: '#262938',
-          accent: '#9333ea',
-          gold: '#eab308'
+        studio: {
+          bg: '#FBFBFB',
+          card: '#FFFFFF',
+          border: '#EAEAEA',
+          borderDark: '#D4D4D8',
+          text: '#111111',
+          muted: '#71717A',
+          subtle: '#F4F4F5',
         }
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        serif: ['Playfair Display', 'serif'],
+        sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
       }
     },
   },
   plugins: [],
 }
-

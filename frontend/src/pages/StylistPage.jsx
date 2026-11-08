@@ -1,36 +1,34 @@
 import React, { useState } from 'react';
-import { Wand2, Sparkles, Compass, Sun, CloudRain, Heart, ArrowRight } from 'lucide-react';
+import { ArrowRight, SlidersHorizontal, Check } from 'lucide-react';
 import { recommendationApi } from '../api/recommendationApi';
 import { useTryOn } from '../context/TryOnContext';
 
 export default function StylistPage({ setActiveTab }) {
   const { applyOutfit } = useTryOn();
 
-  const [gender, setGender] = useState('WOMEN');
-  const [occasion, setOccasion] = useState('WORK');
-  const [style, setStyle] = useState('FORMAL');
+  const [gender, setGender] = useState('MEN');
+  const [occasion, setOccasion] = useState('STREET');
+  const [style, setStyle] = useState('STREETWEAR');
   const [weather, setWeather] = useState('Mát mẻ');
 
   const [isLoading, setIsLoading] = useState(false);
   const [recommendationResult, setRecommendationResult] = useState(null);
 
   const occasions = [
-    { value: 'WORK', label: '💼 Đi làm / Công sở' },
-    { value: 'DATE', label: '🌹 Hẹn hò lãng mạn' },
-    { value: 'PARTY', label: '🍸 Dự tiệc sang trọng' },
-    { value: 'STREET', label: '☕ Dạo phố / Cafe cuối tuần' },
-    { value: 'TRAVEL', label: '✈️ Du lịch dã ngoại' }
+    { value: 'STREET', label: 'Dạo phố / Cafe' },
+    { value: 'WORK', label: 'Đi làm / Công sở' },
+    { value: 'DATE', label: 'Hẹn hò' },
+    { value: 'PARTY', label: 'Dự tiệc' }
   ];
 
   const styles = [
-    { value: 'FORMAL', label: 'Thanh lịch (Formal)' },
-    { value: 'MINIMALIST', label: 'Tối giản (Minimalist)' },
-    { value: 'STREETWEAR', label: 'Cá tính (Streetwear)' },
-    { value: 'PARTY', label: 'Quyến rũ (Glamour)' },
-    { value: 'CASUAL', label: 'Thoải mái (Casual)' }
+    { value: 'STREETWEAR', label: 'Streetwear' },
+    { value: 'MINIMALIST', label: 'Minimalist' },
+    { value: 'CASUAL', label: 'Casual' },
+    { value: 'FORMAL', label: 'Formal' }
   ];
 
-  const weathers = ['Nắng ấm', 'Mát mẻ', 'Se lạnh thu đông', 'Mưa nhẹ'];
+  const weathers = ['Nắng ấm', 'Mát mẻ', 'Se lạnh', 'Mưa nhẹ'];
 
   const handleGetAdvice = async () => {
     setIsLoading(true);
@@ -50,42 +48,44 @@ export default function StylistPage({ setActiveTab }) {
   };
 
   return (
-    <div className="space-y-12 py-6">
+    <div className="py-8 space-y-8 max-w-7xl mx-auto">
       
       {/* Header */}
-      <div className="max-w-2xl">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 text-brand-400 border border-brand-500/20 text-xs font-semibold mb-3">
-          <Wand2 className="w-3.5 h-3.5" /> AI Fashion Consultant
+      <div className="border-b border-[#EAEAEA] pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <span className="text-[11px] font-mono tracking-widest uppercase text-[#71717A] block">
+            Outfit Recommendation Algorithm
+          </span>
+          <h1 className="text-3xl sm:text-5xl font-light tracking-tight text-[#111111] mt-1">
+            Outfit Advisory<span className="text-[#71717A]">.</span>
+          </h1>
+          <p className="text-xs sm:text-sm text-[#71717A] mt-2">
+            Thuật toán phân tích mức độ tương thích trang phục (Fashion Compatibility) dựa trên dữ liệu Polyvore Outfits.
+          </p>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-serif font-bold text-white">
-          Tư Vấn Phối Đồ Thông Minh
-        </h1>
-        <p className="text-sm text-slate-400 mt-2">
-          Chọn ngữ cảnh của bạn hôm nay, Stylist AI sẽ phân tích bánh xe màu sắc và phom dáng để phối ra những set đồ hoàn hảo nhất.
-        </p>
       </div>
 
-      {/* Interactive Questionnaire */}
-      <div className="p-8 rounded-3xl bg-fashion-card border border-fashion-border space-y-8">
+      {/* Questionnaire Form */}
+      <div className="p-6 sm:p-8 rounded-2xl bg-white border border-[#EAEAEA] studio-shadow space-y-6">
         
-        {/* 1. Giới tính */}
+        {/* Gender */}
         <div>
-          <label className="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-3">
-            1. Bạn đang phối đồ cho:
+          <label className="text-[11px] font-mono uppercase tracking-wider text-[#71717A] block mb-2">
+            1. Phối đồ cho:
           </label>
-          <div className="grid grid-cols-3 gap-3 max-w-md">
+          <div className="flex gap-2 max-w-sm">
             {[
-              { id: 'WOMEN', label: 'Nữ giới' },
-              { id: 'MEN', label: 'Nam giới' },
+              { id: 'MEN', label: 'Nam' },
+              { id: 'WOMEN', label: 'Nữ' },
               { id: 'UNISEX', label: 'Unisex' }
             ].map(g => (
               <button
                 key={g.id}
                 onClick={() => setGender(g.id)}
-                className={`py-3 px-4 rounded-2xl text-xs font-semibold border transition-all ${
+                className={`flex-1 py-2 rounded-lg text-xs font-medium border transition-all ${
                   gender === g.id
-                    ? 'bg-brand-600 border-brand-500 text-white shadow-lg shadow-brand-600/30'
-                    : 'bg-fashion-dark border-fashion-border text-slate-300 hover:border-slate-600'
+                    ? 'bg-black text-white border-black'
+                    : 'bg-white text-[#71717A] border-[#D4D4D8] hover:border-black'
                 }`}
               >
                 {g.label}
@@ -94,20 +94,20 @@ export default function StylistPage({ setActiveTab }) {
           </div>
         </div>
 
-        {/* 2. Dịp / Mục đích */}
+        {/* Occasion */}
         <div>
-          <label className="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-3">
-            2. Bạn sắp đi đâu? (Dịp sự kiện)
+          <label className="text-[11px] font-mono uppercase tracking-wider text-[#71717A] block mb-2">
+            2. Ngữ cảnh sử dụng:
           </label>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+          <div className="flex flex-wrap gap-2">
             {occasions.map(o => (
               <button
                 key={o.value}
                 onClick={() => setOccasion(o.value)}
-                className={`p-3.5 rounded-2xl text-xs font-semibold text-left border transition-all ${
+                className={`px-4 py-2 rounded-lg text-xs font-medium border transition-all ${
                   occasion === o.value
-                    ? 'bg-brand-600 border-brand-500 text-white shadow-lg shadow-brand-600/30'
-                    : 'bg-fashion-dark border-fashion-border text-slate-300 hover:border-slate-600'
+                    ? 'bg-black text-white border-black'
+                    : 'bg-white text-[#71717A] border-[#D4D4D8] hover:border-black'
                 }`}
               >
                 {o.label}
@@ -116,21 +116,21 @@ export default function StylistPage({ setActiveTab }) {
           </div>
         </div>
 
-        {/* 3. Phong cách & Thời tiết */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-fashion-border/50">
+        {/* Style & Weather */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-3 border-t border-[#EAEAEA]">
           <div>
-            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-3">
-              3. Phong cách bạn hướng tới:
+            <label className="text-[11px] font-mono uppercase tracking-wider text-[#71717A] block mb-2">
+              3. Phong cách:
             </label>
             <div className="flex flex-wrap gap-2">
               {styles.map(s => (
                 <button
                   key={s.value}
                   onClick={() => setStyle(s.value)}
-                  className={`px-4 py-2.5 rounded-xl text-xs font-semibold border transition-all ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${
                     style === s.value
-                      ? 'bg-purple-600 border-purple-500 text-white shadow-md'
-                      : 'bg-fashion-dark border-fashion-border text-slate-300 hover:border-slate-600'
+                      ? 'bg-black text-white border-black'
+                      : 'bg-white text-[#71717A] border-[#D4D4D8] hover:border-black'
                   }`}
                 >
                   {s.label}
@@ -140,18 +140,18 @@ export default function StylistPage({ setActiveTab }) {
           </div>
 
           <div>
-            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-3">
-              4. Thời tiết dự kiến:
+            <label className="text-[11px] font-mono uppercase tracking-wider text-[#71717A] block mb-2">
+              4. Thời tiết:
             </label>
             <div className="flex flex-wrap gap-2">
               {weathers.map(w => (
                 <button
                   key={w}
                   onClick={() => setWeather(w)}
-                  className={`px-4 py-2.5 rounded-xl text-xs font-semibold border transition-all ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${
                     weather === w
-                      ? 'bg-emerald-600 border-emerald-500 text-white shadow-md'
-                      : 'bg-fashion-dark border-fashion-border text-slate-300 hover:border-slate-600'
+                      ? 'bg-black text-white border-black'
+                      : 'bg-white text-[#71717A] border-[#D4D4D8] hover:border-black'
                   }`}
                 >
                   {w}
@@ -162,20 +162,21 @@ export default function StylistPage({ setActiveTab }) {
         </div>
 
         {/* Submit */}
-        <div className="pt-4 flex justify-end">
+        <div className="pt-2 flex justify-end">
           <button
             onClick={handleGetAdvice}
             disabled={isLoading}
-            className="px-8 py-4 rounded-2xl bg-gradient-to-r from-brand-600 to-purple-600 hover:from-brand-500 hover:to-purple-500 text-white font-bold text-sm shadow-xl shadow-brand-600/30 flex items-center gap-2.5 transition-all active:scale-95 disabled:opacity-50"
+            className="px-6 py-3 rounded-xl bg-[#111111] hover:bg-black text-white font-medium text-xs tracking-wider uppercase flex items-center gap-2 transition-all active:scale-[0.99] disabled:opacity-50"
           >
             {isLoading ? (
               <>
-                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                AI đang tính toán bảng màu & phối đồ...
+                <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                <span>Đang phân tích tương thích...</span>
               </>
             ) : (
               <>
-                <Wand2 className="w-5 h-5" /> Nhận Tư Vấn Phối Đồ Ngay
+                <span>Tìm set phối phù hợp</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </>
             )}
           </button>
@@ -183,92 +184,57 @@ export default function StylistPage({ setActiveTab }) {
 
       </div>
 
-      {/* AI Recommendation Result Section */}
+      {/* Results */}
       {recommendationResult && (
-        <div className="space-y-8 animate-fadeIn">
-          
-          {/* Advice Banner */}
-          <div className="p-6 rounded-3xl bg-gradient-to-r from-brand-950/60 via-purple-950/40 to-slate-900 border border-brand-500/40 shadow-2xl">
-            <h3 className="text-lg font-serif font-bold text-brand-300 mb-2 flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-brand-400" /> Nhận định của Stylist AI
-            </h3>
-            <p className="text-sm text-slate-200 leading-relaxed">
+        <div className="space-y-6">
+          <div className="p-5 rounded-2xl bg-[#F4F4F5] border border-[#E4E4E7]">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-[#71717A] block mb-1">
+              Phân tích thẩm mỹ Polyvore
+            </span>
+            <p className="text-xs text-[#111111] leading-relaxed">
               {recommendationResult.stylistSummary}
             </p>
-            <div className="mt-4 pt-3 border-t border-brand-500/20 text-xs font-medium text-purple-300">
-              {recommendationResult.colorPaletteAdvice}
-            </div>
           </div>
 
-          {/* Outfits List */}
-          <div>
-            <h3 className="text-xl font-serif font-bold text-white mb-6">
-              Các Set Đồ Được Đề Xuất
-            </h3>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {recommendationResult.recommendedOutfits?.map((outfit, index) => (
-                <div
-                  key={index}
-                  className="rounded-3xl bg-fashion-card border border-fashion-border overflow-hidden hover:border-brand-500/50 transition-all flex flex-col justify-between"
-                >
-                  <div className="relative aspect-[4/3] bg-slate-900 overflow-hidden">
-                    <img
-                      src={outfit.previewImageUrl}
-                      alt={outfit.name}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-black/70 backdrop-blur-md text-emerald-400 text-xs font-bold font-mono">
-                      {outfit.harmonyScore || 96}% Hài hòa
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {recommendationResult.recommendedOutfits?.map((outfit, index) => (
+              <div
+                key={index}
+                className="rounded-2xl bg-white border border-[#EAEAEA] studio-shadow overflow-hidden flex flex-col justify-between"
+              >
+                <div className="aspect-[4/3] bg-[#F9F9F9] overflow-hidden">
+                  <img src={outfit.previewImageUrl} alt={outfit.name} className="w-full h-full object-cover object-top" />
+                </div>
+                <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+                  <div>
+                    <div className="flex items-center justify-between mb-1">
+                      <h4 className="text-sm font-semibold text-black">{outfit.name}</h4>
+                      <span className="text-xs font-mono font-medium text-emerald-600">
+                        {outfit.harmonyScore || 96}% Match
+                      </span>
                     </div>
+                    <p className="text-xs text-[#71717A] leading-relaxed">{outfit.description}</p>
                   </div>
 
-                  <div className="p-6 flex-1 flex flex-col justify-between">
-                    <div>
-                      <h4 className="text-lg font-bold text-white mb-1">{outfit.name}</h4>
-                      <p className="text-xs text-slate-400 leading-relaxed mb-4">{outfit.description}</p>
-                      
-                      {/* Products inside this outfit */}
-                      <div className="space-y-2 mb-4">
-                        <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block">
-                          Gồm {outfit.products?.length || 0} món đồ:
-                        </span>
-                        <div className="flex flex-wrap gap-2">
-                          {outfit.products?.map((item) => (
-                            <span key={item.id} className="px-2.5 py-1 rounded-lg bg-fashion-dark border border-fashion-border text-[11px] text-slate-300">
-                              • {item.name}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="pt-4 border-t border-fashion-border/50 flex items-center justify-between">
-                      <div>
-                        <span className="text-[11px] text-slate-400 block">Tổng giá trị</span>
-                        <span className="text-base font-bold text-white font-mono">
-                          {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(outfit.totalPrice || 1800000)}
-                        </span>
-                      </div>
-
-                      <button
-                        onClick={() => handleTryOutfit(outfit)}
-                        className="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-bold shadow-lg shadow-brand-600/30 flex items-center gap-2 transition-all active:scale-95"
-                      >
-                        <Sparkles className="w-4 h-4" /> Đưa vào Buồng Thử Ảo <ArrowRight className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-
+                  <div className="pt-3 border-t border-[#EAEAEA] flex items-center justify-between">
+                    <span className="text-sm font-bold text-black font-mono">
+                      {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(outfit.totalPrice || 1800000)}
+                    </span>
+                    <button
+                      onClick={() => handleTryOutfit(outfit)}
+                      className="px-4 py-2 rounded-lg bg-[#111111] hover:bg-black text-white text-xs font-medium flex items-center gap-1.5 transition-all"
+                    >
+                      <span>Thử set đồ</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </button>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-
         </div>
       )}
 
     </div>
   );
 }
-

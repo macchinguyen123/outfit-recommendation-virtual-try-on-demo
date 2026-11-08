@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 import { TryOnProvider } from './context/TryOnContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import HomePage from './pages/HomePage';
+import TryTheLookPage from './pages/TryTheLookPage';
 import CatalogPage from './pages/CatalogPage';
 import StylistPage from './pages/StylistPage';
 import TryOnPage from './pages/TryOnPage';
 import HistoryPage from './pages/HistoryPage';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('home');
+  const [activeTab, setActiveTab] = useState('look');
 
   const renderContent = () => {
     switch (activeTab) {
-      case 'home':
-        return <HomePage setActiveTab={setActiveTab} />;
+      case 'look':
+        return <TryTheLookPage setActiveTab={setActiveTab} />;
       case 'catalog':
         return <CatalogPage setActiveTab={setActiveTab} />;
       case 'stylist':
@@ -24,13 +24,13 @@ export default function App() {
       case 'history':
         return <HistoryPage setActiveTab={setActiveTab} />;
       default:
-        return <HomePage setActiveTab={setActiveTab} />;
+        return <TryTheLookPage setActiveTab={setActiveTab} />;
     }
   };
 
   return (
     <TryOnProvider>
-      <div className="min-h-screen flex flex-col bg-fashion-dark text-slate-100 font-sans">
+      <div className="min-h-screen flex flex-col bg-[#FBFBFB] text-[#111111] font-sans">
         <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />
         <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
           {renderContent()}

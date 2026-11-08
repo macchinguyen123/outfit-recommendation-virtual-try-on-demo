@@ -1,217 +1,324 @@
-export const PRESET_MODELS = [
-  {
-    id: 'model-1',
-    name: 'Mẫu Nữ 01 - Thanh lịch Châu Á',
-    gender: 'WOMEN',
-    imageUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80',
-    stats: '1m68 • Size S • Dáng mảnh'
-  },
-  {
-    id: 'model-2',
-    name: 'Mẫu Nữ 02 - Phong cách Âu Mỹ',
-    gender: 'WOMEN',
-    imageUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
-    stats: '1m72 • Size M • Dáng đồng hồ cát'
-  },
-  {
-    id: 'model-3',
-    name: 'Mẫu Nam 01 - Trẻ trung Hiện đại',
-    gender: 'MEN',
-    imageUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80',
-    stats: '1m80 • Size L • Thể thao'
-  },
-  {
-    id: 'model-4',
-    name: 'Mẫu Nam 02 - Lịch lãm Quý ông',
-    gender: 'MEN',
-    imageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80',
-    stats: '1m78 • Size M • Cân đối'
-  }
-];
+/**
+ * Dữ liệu thời trang chuẩn hóa theo cấu trúc Polyvore Outfits Dataset
+ * Nguồn: https://www.kaggle.com/datasets/nguynmcch/polyvore-outfits-data
+ */
 
-export const MOCK_PRODUCTS = [
+export const POLYVORE_LOOKS = [
   {
-    id: 1,
-    name: "Áo Blazer Cổ Điển Oversized Beige",
-    description: "Thiết kế vai đệm tự nhiên, phom suông phóng khoáng mang đậm nét thanh lịch kiểu Pháp. Chất liệu vải dạ text đanh mịn.",
-    category: "TOP",
-    subCategory: "Áo Blazer",
-    gender: "WOMEN",
-    style: "FORMAL",
-    occasion: "WORK",
-    color: "Beige",
-    colorHex: "#D7C4B7",
-    size: "S, M, L",
-    price: 850000,
-    imageUrl: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=800&q=80",
-    modelImageUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
-    rating: 4.9,
-    reviewCount: 48,
-    inStock: true
-  },
-  {
-    id: 2,
-    name: "Áo Sơ Mi Lụa Trắng Cổ Đức Basic",
-    description: "Chất liệu lụa satin mượt mà, độ rũ mềm mại tạo cảm giác thoải mái suốt ngày dài làm việc.",
-    category: "TOP",
-    subCategory: "Áo Sơ Mi",
-    gender: "WOMEN",
-    style: "MINIMALIST",
-    occasion: "WORK",
-    color: "Trắng Tinh Khôi",
-    colorHex: "#FFFFFF",
-    size: "S, M, L",
-    price: 420000,
-    imageUrl: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=800&q=80",
-    modelImageUrl: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80",
-    rating: 4.8,
-    reviewCount: 35,
-    inStock: true
-  },
-  {
-    id: 3,
-    name: "Áo Thun Graphic Vintage Streetwear Đen",
-    description: "Chất liệu 100% cotton định lượng 250gsm dày dặn, hình in lụa phong cách Y2K retro phóng khoáng.",
-    category: "TOP",
-    subCategory: "Áo Thun",
-    gender: "UNISEX",
+    id: 'polyvore-look-1',
+    outfitId: '194201_polyvore',
+    name: "Urban Baggy Minimalist",
     style: "STREETWEAR",
     occasion: "STREET",
-    color: "Đen Washed",
-    colorHex: "#1A1A1A",
-    size: "M, L, XL",
-    price: 350000,
-    imageUrl: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80",
-    modelImageUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
-    rating: 4.7,
-    reviewCount: 92,
-    inStock: true
+    season: "All Season",
+    harmonyScore: 98.2,
+    model: {
+      name: "Marcus - 1m82 (Size L)",
+      gender: "MEN",
+      // Model full body standing in studio (center guy in white tee + baggy jeans)
+      fullBodyUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=1000&q=80",
+      transparentModelUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=1000&q=80"
+    },
+    items: [
+      {
+        id: 101,
+        polyvoreId: "pv_top_101",
+        name: "Heavyweight Boxy Tee Pure White",
+        category: "TOP",
+        subCategory: "Áo Thun Oversized",
+        price: 450000,
+        color: "Trắng",
+        colorHex: "#FFFFFF",
+        imageUrl: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80",
+        brand: "Acne Studios Inspired"
+      },
+      {
+        id: 102,
+        polyvoreId: "pv_bottom_102",
+        name: "Vintage Light-Wash Baggy Denim",
+        category: "BOTTOM",
+        subCategory: "Quần Jeans Ống Suông",
+        price: 780000,
+        color: "Xanh Denim Nhạt",
+        colorHex: "#7FA2C7",
+        imageUrl: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=600&q=80",
+        brand: "Balenciaga Style"
+      },
+      {
+        id: 103,
+        polyvoreId: "pv_shoes_103",
+        name: "Retro Runner Chunky Sneaker Low",
+        category: "SHOES",
+        subCategory: "Giày Thể Thao",
+        price: 1250000,
+        color: "Xám / Trắng",
+        colorHex: "#D1D5DB",
+        imageUrl: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=600&q=80",
+        brand: "New Balance 550"
+      },
+      {
+        id: 104,
+        polyvoreId: "pv_acc_104",
+        name: "Minimalist Silver Chain & Ring",
+        category: "ACCESSORY",
+        subCategory: "Phụ Kiện Kim Loại",
+        price: 290000,
+        color: "Bạc",
+        colorHex: "#E5E7EB",
+        imageUrl: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80",
+        brand: "Polyvore Accessories"
+      }
+    ]
   },
   {
-    id: 4,
-    name: "Quần Tây Ống Rộng Xếp Ly Đen",
-    description: "Cạp cao tôn dáng, đường ly sắc nét tạo hiệu ứng chân dài miên man. Thích hợp đi làm hoặc dự tiệc.",
-    category: "BOTTOM",
-    subCategory: "Quần Tây",
-    gender: "WOMEN",
-    style: "FORMAL",
-    occasion: "WORK",
-    color: "Đen",
-    colorHex: "#0F172A",
-    size: "S, M, L",
-    price: 550000,
-    imageUrl: "https://images.unsplash.com/photo-1509551388413-e18d0ac5d495?auto=format&fit=crop&w=800&q=80",
-    modelImageUrl: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80",
-    rating: 4.9,
-    reviewCount: 64,
-    inStock: true
-  },
-  {
-    id: 5,
-    name: "Quần Jeans Xanh Retro Ống Đứng",
-    description: "Vải denim dệt thoi bền bỉ, sắc xanh vintage cổ điển phối cực kỳ ăn ý với mọi loại áo thun và áo khoác.",
-    category: "BOTTOM",
-    subCategory: "Quần Jeans",
-    gender: "UNISEX",
+    id: 'polyvore-look-2',
+    outfitId: '194202_polyvore',
+    name: "Classic Grey Sweatshirt & Denim",
     style: "CASUAL",
     occasion: "STREET",
-    color: "Xanh Denim",
-    colorHex: "#3B82F6",
-    size: "29, 30, 31, 32",
-    price: 620000,
-    imageUrl: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=80",
-    modelImageUrl: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
-    rating: 4.8,
-    reviewCount: 53,
-    inStock: true
-  },
-  {
-    id: 6,
-    name: "Đầm Lụa Midi Dáng Ôm Cổ Yếm Ruby Red",
-    description: "Sắc đỏ rượu quý phái cùng thiết kế hở lưng tinh tế, vũ khí tỏa sáng cho mọi đêm tiệc sang trọng.",
-    category: "DRESS",
-    subCategory: "Đầm Dự Tiệc",
-    gender: "WOMEN",
-    style: "PARTY",
-    occasion: "PARTY",
-    color: "Đỏ Ruby",
-    colorHex: "#991B1B",
-    size: "S, M",
-    price: 1250000,
-    imageUrl: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=800&q=80",
-    modelImageUrl: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=800&q=80",
-    rating: 5.0,
-    reviewCount: 118,
-    inStock: true
-  },
-  {
-    id: 7,
-    name: "Giày Cao Gót Mũi Nhọn Da Bóng Nude",
-    description: "Gót cao 7cm tôn dáng chuẩn mực, lót đệm êm chân suốt cả ngày dài.",
-    category: "SHOES",
-    subCategory: "Giày Cao Gót",
-    gender: "WOMEN",
-    style: "FORMAL",
-    occasion: "WORK",
-    color: "Nude",
-    colorHex: "#E2C4B1",
-    size: "36, 37, 38, 39",
-    price: 790000,
-    imageUrl: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=800&q=80",
-    modelImageUrl: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=800&q=80",
-    rating: 4.7,
-    reviewCount: 40,
-    inStock: true
-  },
-  {
-    id: 8,
-    name: "Sneakers Chunky Sole Retro White",
-    description: "Đế đệm khí êm ái, phong cách đường phố năng động dễ mix đồ hàng ngày.",
-    category: "SHOES",
-    subCategory: "Giày Thể Thao",
-    gender: "UNISEX",
-    style: "STREETWEAR",
-    occasion: "STREET",
-    color: "Trắng Bạc",
-    colorHex: "#E5E7EB",
-    size: "38, 39, 40, 41, 42",
-    price: 950000,
-    imageUrl: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80",
-    modelImageUrl: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80",
-    rating: 4.9,
-    reviewCount: 81,
-    inStock: true
-  }
-];
-
-export const MOCK_OUTFITS = [
-  {
-    id: 1,
-    name: "Parisian Chic Workwear",
-    description: "Bản phối thanh lịch kết hợp Blazer Beige và Quần Tây xếp ly, chuẩn phong thái nữ giám đốc hiện đại.",
-    occasion: "WORK",
-    style: "FORMAL",
-    gender: "WOMEN",
     season: "Thu - Đông",
-    harmonyScore: 97.0,
-    aiStylistAdvice: "Gợi ý kết hợp cùng túi xách da dáng hộp tone nâu đất và son môi màu đất để tăng khí chất quý phái.",
-    previewImageUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
-    products: [MOCK_PRODUCTS[0], MOCK_PRODUCTS[1], MOCK_PRODUCTS[3], MOCK_PRODUCTS[6]],
-    totalPrice: 2610000
+    harmonyScore: 96.5,
+    model: {
+      name: "Daniel - 1m78 (Size M)",
+      gender: "MEN",
+      fullBodyUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1000&q=80",
+      transparentModelUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1000&q=80"
+    },
+    items: [
+      {
+        id: 105,
+        polyvoreId: "pv_top_105",
+        name: "Washed French Terry Sweatshirt Heather Grey",
+        category: "TOP",
+        subCategory: "Áo Nỉ Chui Đầu",
+        price: 620000,
+        color: "Xám Tiêu",
+        colorHex: "#9CA3AF",
+        imageUrl: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80",
+        brand: "Fear of God Essentials"
+      },
+      {
+        id: 106,
+        polyvoreId: "pv_bottom_106",
+        name: "Relaxed Straight-Leg Indigo Jeans",
+        category: "BOTTOM",
+        subCategory: "Quần Jeans Indigo",
+        price: 720000,
+        color: "Xanh Indigo",
+        colorHex: "#2563EB",
+        imageUrl: "https://images.unsplash.com/photo-1509551388413-e18d0ac5d495?auto=format&fit=crop&w=600&q=80",
+        brand: "Levi's 501 Vintage"
+      },
+      {
+        id: 107,
+        polyvoreId: "pv_shoes_107",
+        name: "Vintage Canvas High-Top Sneaker",
+        category: "SHOES",
+        subCategory: "Giày Canvas",
+        price: 950000,
+        color: "Đen",
+        colorHex: "#111827",
+        imageUrl: "https://images.unsplash.com/photo-1607522370275-f14206abe5d3?auto=format&fit=crop&w=600&q=80",
+        brand: "Converse Chuck 70"
+      }
+    ]
   },
   {
-    id: 2,
-    name: "Urban Cool Streetwear",
-    description: "Phóng khoáng, tự tin với áo thun graphic vintage kết hợp cùng quần jeans retro và chunky sneakers.",
-    occasion: "STREET",
+    id: 'polyvore-look-3',
+    outfitId: '194203_polyvore',
+    name: "Earth Tone Knit & Khaki Trousers",
+    style: "MINIMALIST",
+    occasion: "WORK",
+    season: "Thu - Đông",
+    harmonyScore: 97.4,
+    model: {
+      name: "Ethan - 1m80 (Size L)",
+      gender: "MEN",
+      fullBodyUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=1000&q=80",
+      transparentModelUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=1000&q=80"
+    },
+    items: [
+      {
+        id: 108,
+        polyvoreId: "pv_top_108",
+        name: "Relaxed Olive Green Crewneck Sweater",
+        category: "TOP",
+        subCategory: "Áo Len Dệt Kim",
+        price: 690000,
+        color: "Xanh Rêu",
+        colorHex: "#556B2F",
+        imageUrl: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=600&q=80",
+        brand: "COS Minimalist"
+      },
+      {
+        id: 109,
+        polyvoreId: "pv_bottom_109",
+        name: "Pleated Wide-Leg Camel Trousers",
+        category: "BOTTOM",
+        subCategory: "Quần Tây Ống Rộng",
+        price: 850000,
+        color: "Nâu Camel",
+        colorHex: "#C19A6B",
+        imageUrl: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=600&q=80",
+        brand: "Lemaire Inspired"
+      },
+      {
+        id: 110,
+        polyvoreId: "pv_shoes_110",
+        name: "Suede Leather Penny Loafers Caramel",
+        category: "SHOES",
+        subCategory: "Giày Loafer Da Lộn",
+        price: 1390000,
+        color: "Caramel",
+        colorHex: "#8B5A2B",
+        imageUrl: "https://images.unsplash.com/photo-1533867617858-e7b97e060509?auto=format&fit=crop&w=600&q=80",
+        brand: "Bespoke Collection"
+      }
+    ]
+  },
+  {
+    id: 'polyvore-look-4',
+    outfitId: '194204_polyvore',
+    name: "Parisian Tailored Chic Blazer",
+    style: "FORMAL",
+    occasion: "WORK",
+    season: "Thu - Đông",
+    harmonyScore: 99.1,
+    model: {
+      name: "Camille - 1m70 (Size S)",
+      gender: "WOMEN",
+      fullBodyUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=80",
+      transparentModelUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=80"
+    },
+    items: [
+      {
+        id: 111,
+        polyvoreId: "pv_top_111",
+        name: "Double-Breasted Wool Blazer Beige",
+        category: "TOP",
+        subCategory: "Áo Blazer Dạ",
+        price: 1150000,
+        color: "Beige Sữa",
+        colorHex: "#E6D5B8",
+        imageUrl: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=80",
+        brand: "The Frankie Shop"
+      },
+      {
+        id: 112,
+        polyvoreId: "pv_bottom_112",
+        name: "High-Waist Tailored Trousers Noir",
+        category: "BOTTOM",
+        subCategory: "Quần Suông Cao Cấp",
+        price: 680000,
+        color: "Đen",
+        colorHex: "#0F172A",
+        imageUrl: "https://images.unsplash.com/photo-1509551388413-e18d0ac5d495?auto=format&fit=crop&w=600&q=80",
+        brand: "Polyvore Tailoring"
+      },
+      {
+        id: 113,
+        polyvoreId: "pv_shoes_113",
+        name: "Pointed-Toe Leather Pumps Nude",
+        category: "SHOES",
+        subCategory: "Giày Cao Gót",
+        price: 890000,
+        color: "Nude",
+        colorHex: "#E2C4B1",
+        imageUrl: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=600&q=80",
+        brand: "Jimmy Choo Style"
+      }
+    ]
+  },
+  {
+    id: 'polyvore-look-5',
+    outfitId: '194205_polyvore',
+    name: "Total Black Street Boxy",
     style: "STREETWEAR",
-    gender: "UNISEX",
+    occasion: "STREET",
     season: "Xuân - Hè",
-    harmonyScore: 94.5,
-    aiStylistAdvice: "Phối thêm vòng cổ kim loại bản nhỏ hoặc mũ lưỡi trai để hoàn thiện nét cá tính đường phố trẻ trung.",
-    previewImageUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
-    products: [MOCK_PRODUCTS[2], MOCK_PRODUCTS[4], MOCK_PRODUCTS[7]],
-    totalPrice: 1920000
+    harmonyScore: 95.8,
+    model: {
+      name: "Leo - 1m84 (Size XL)",
+      gender: "MEN",
+      fullBodyUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1000&q=80",
+      transparentModelUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1000&q=80"
+    },
+    items: [
+      {
+        id: 114,
+        polyvoreId: "pv_top_114",
+        name: "Heavy Heavyweight Boxy Tee Washed Black",
+        category: "TOP",
+        subCategory: "Áo Thun Đen Washed",
+        price: 490000,
+        color: "Đen Washed",
+        colorHex: "#1C1917",
+        imageUrl: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80",
+        brand: "Yeezy Season Style"
+      },
+      {
+        id: 115,
+        polyvoreId: "pv_bottom_115",
+        name: "Wide Skater Denim Bleached Blue",
+        category: "BOTTOM",
+        subCategory: "Quần Jeans Skater",
+        price: 820000,
+        color: "Xanh Bleached",
+        colorHex: "#60A5FA",
+        imageUrl: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=600&q=80",
+        brand: "Stüssy Inspired"
+      },
+      {
+        id: 116,
+        polyvoreId: "pv_shoes_116",
+        name: "Low Skate Sneaker Black & White",
+        category: "SHOES",
+        subCategory: "Giày Trượt Ván",
+        price: 1190000,
+        color: "Đen / Trắng",
+        colorHex: "#000000",
+        imageUrl: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=600&q=80",
+        brand: "Vans Knu Skool"
+      }
+    ]
   }
 ];
 
+// Trích xuất toàn bộ sản phẩm từ các Look Polyvore để làm danh mục sản phẩm chung
+export const MOCK_PRODUCTS = POLYVORE_LOOKS.flatMap(look => 
+  look.items.map(item => ({
+    ...item,
+    description: `Sản phẩm chuẩn hóa từ Polyvore Outfits Dataset (${item.brand}). Chất liệu cao cấp, độ rủ tự nhiên chuẩn phom dáng runway.`,
+    gender: look.model.gender,
+    style: look.style,
+    occasion: look.occasion,
+    size: "S, M, L, XL",
+    modelImageUrl: look.model.fullBodyUrl,
+    rating: 4.9,
+    reviewCount: 38,
+    inStock: true
+  }))
+);
+
+export const MOCK_OUTFITS = POLYVORE_LOOKS.map(look => ({
+  id: look.id,
+  name: look.name,
+  description: `Set đồ phong cách ${look.style} chuẩn hóa từ bộ dữ liệu Polyvore Outfits, tương thích màu sắc và tỉ lệ cơ thể đạt ${look.harmonyScore}%.`,
+  occasion: look.occasion,
+  style: look.style,
+  gender: look.model.gender,
+  season: look.season,
+  harmonyScore: look.harmonyScore,
+  aiStylistAdvice: `Bản phối này sử dụng tỉ lệ đối nghịch phom dáng (Relaxed/Boxy) kết hợp bảng màu trung tính, tạo ấn tượng hiện đại phóng khoáng.`,
+  previewImageUrl: look.model.fullBodyUrl,
+  products: look.items,
+  totalPrice: look.items.reduce((sum, item) => sum + item.price, 0)
+}));
+
+export const PRESET_MODELS = POLYVORE_LOOKS.map((look, idx) => ({
+  id: `model-${idx + 1}`,
+  name: look.model.name,
+  gender: look.model.gender,
+  imageUrl: look.model.fullBodyUrl,
+  stats: `${look.name} • Polyvore Runway Model`
+}));
